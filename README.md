@@ -4,6 +4,15 @@
 
 > 搓了五天，来回烧录测试了小几百次。分享版抹掉了个性化设置（人设、文案池等），大家实际使用时自定义内容依然很多。不至于像我一样花五天，但建议预留至少半天加载个性化信息并测试。
 
+## 更新日志
+
+### 2026-06-06
+- **唤醒词灵敏度重构**：`CONFIG_CUSTOM_WAKE_WORD_THRESHOLD` 改为 `CONFIG_WAKE_WORD_SENSITIVITY` Low/Medium/High 三档，AFE/ESP/自定义三种唤醒方式统一采用
+- **文本打断优化**：`SendUserText` 在 Speaking 状态下打断说话并重新唤醒，Listening 状态下关闭音频通道后重新唤醒
+- **M5Stack Core S3 休眠背光**：进入休眠时背光亮度改为 0，彻底熄灭
+- **省电定时器**：绕过 NVS `sleep_mode` 设置和 `CanEnterSleepMode` 检查，始终启用
+- **SPIRAM 模式**：esp32s3 从 OCT 改回 QUAD
+
 ## 功能一览
 
 ### 头顶触摸 (SI12T)
@@ -50,15 +59,6 @@
 - 电池监测 + 低电量提醒
 - 休眠时自动进入省电模式，背光彻底熄灭
 - 省电定时器始终启用，不再受 NVS 设置影响
-
-## 更新日志
-
-### 2026-06-06
-- **唤醒词灵敏度重构**：`CONFIG_CUSTOM_WAKE_WORD_THRESHOLD` 改为 `CONFIG_WAKE_WORD_SENSITIVITY` Low/Medium/High 三档，AFE/ESP/自定义三种唤醒方式统一采用
-- **文本打断优化**：`SendUserText` 在 Speaking 状态下打断说话并重新唤醒，Listening 状态下关闭音频通道后重新唤醒
-- **M5Stack Core S3 休眠背光**：进入休眠时背光亮度改为 0，彻底熄灭
-- **省电定时器**：绕过 NVS `sleep_mode` 设置和 `CanEnterSleepMode` 检查，始终启用
-- **SPIRAM 模式**：esp32s3 从 OCT 改回 QUAD
 
 ## 已知问题和注意事项
 
