@@ -1,4 +1,4 @@
-# Stackchan-HtSz: M5Stack Core S3 Stack-chan 个性化增强固件
+﻿# Stackchan-HtSz: M5Stack Core S3 Stack-chan 个性化增强固件
 
 基于 [xiaozhi-esp32](https://github.com/78/xiaozhi-esp32) 的 M5Stack Core S3 Stack-chan 增强固件。在原版语音交互基础上增加了触摸、体感、情绪灯、舵机等交互能力，侧重**陪伴感**体验。
 
@@ -32,6 +32,10 @@
 - 空闲扫视动画
 - 对话时暂停/恢复
 
+### 文本打断
+- LLM/用户输入文本消息可在 Speaking/Listening 状态下打断当前对话并重新唤醒
+- 避免对话中发文本被静默丢弃
+
 ### 早安问候 (定时任务)
 - 工作日早上定时问候 + 天气查询
 - SNTP 延迟启动（避免 tcpip panic）
@@ -44,6 +48,8 @@
 - I2C 错误容错处理（防止偶发超时导致整机重启）
 - 摄像头拍照（MCP 工具）
 - 电池监测 + 低电量提醒
+- 休眠时自动进入省电模式，背光彻底熄灭
+- 省电定时器始终启用，不再受 NVS 设置影响
 
 ## 已知问题和注意事项
 
