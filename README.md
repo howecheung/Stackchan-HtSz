@@ -6,6 +6,10 @@
 
 ## 更新日志
 
+### 2026-06-11
+- **修复休眠机制**：`PowerSaveTimer` 恢复 `CanEnterSleepMode()` 空闲检查——只有设备真正空闲（Idle + 无音频通道 + 音频服务空闲）才开始休眠倒计时。修复之前对话中也强制休眠导致 LED/舵机/屏幕中途关闭的问题
+- **缩短休眠等待**：M5Stack Core S3 休眠超时从 60 秒改为 30 秒
+
 ### 2026-06-10
 
 - **编译修复**：恢复 `ota_` 成员变量、`UpgradeFirmware` 方法、`kDeviceStateUpgrading` 状态（codex-refactor 分支重构遗漏导致编译失败）
@@ -21,7 +25,7 @@
 - **唤醒词灵敏度重构**：`CONFIG_CUSTOM_WAKE_WORD_THRESHOLD` 改为 `CONFIG_WAKE_WORD_SENSITIVITY` Low/Medium/High 三档，AFE/ESP/自定义三种唤醒方式统一采用
 - **文本打断优化**：`SendUserText` 在 Speaking 状态下打断说话并重新唤醒，Listening 状态下关闭音频通道后重新唤醒
 - **M5Stack Core S3 休眠背光**：进入休眠时背光亮度改为 0，彻底熄灭
-- **省电定时器**：绕过 NVS `sleep_mode` 设置和 `CanEnterSleepMode` 检查，始终启用
+- **省电定时器**：绕过 NVS `sleep_mode` 设置，始终启用（2026-06-11 已修复：恢复 `CanEnterSleepMode` 检查，对话中不再误休眠）
 - **SPIRAM 模式**：esp32s3 从 OCT 改回 QUAD
 
 ## 功能一览
